@@ -1,6 +1,5 @@
 package ru.itpark;
 
-import ru.itpark.model.House;
 import ru.itpark.service.AvitoService;
 
 import java.sql.SQLException;

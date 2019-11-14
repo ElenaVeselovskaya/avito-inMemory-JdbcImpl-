@@ -9,10 +9,8 @@ import java.util.List;
 
 public class AvitoService {
 
-    List<House> houses;
-
     public List<House> getListOfHouses() throws SQLException {
-        houses = JdbcTemplate.executeQuery(
+        List<House> houses = JdbcTemplate.executeQuery(
                 "jdbc:sqlite:db.sqlite",
                 "SELECT id, price, room, underground, district FROM houses",
                 resultSet -> new House(
@@ -25,7 +23,7 @@ public class AvitoService {
     }
 
     public List<House> searchByDistrict(String district) throws SQLException {
-        houses = getListOfHouses();
+        List<House> houses = getListOfHouses();
         List<House> result = new LinkedList<>();
         for (House house : houses) {
             if (house.getDistrict().toUpperCase().contains(district.toUpperCase())) {
@@ -37,7 +35,7 @@ public class AvitoService {
     }
 
     public List<House> searchByPrice(int min, int max) throws SQLException {
-        houses = getListOfHouses();
+        List<House> houses = getListOfHouses();
         List<House> result = new LinkedList<>();
         for (House house : houses) {
             if (house.getPrice() >= min && house.getPrice() <= max) {
@@ -49,7 +47,7 @@ public class AvitoService {
     }
 
     public List<House> searchByUnderground(String underground) throws SQLException {
-        houses = getListOfHouses();
+        List<House> houses = getListOfHouses();
         List<House> result = new LinkedList<>();
         for (House house : houses) {
             if (house.getUnderground().toUpperCase().contains(underground.toUpperCase())) {
@@ -61,7 +59,7 @@ public class AvitoService {
     }
 
     public List<House> searchByRooms(int quantityOfRooms) throws SQLException {
-        houses = getListOfHouses();
+        List<House> houses = getListOfHouses();
         List<House> result = new LinkedList<>();
         for (House house : houses) {
             if (house.getRoom() == quantityOfRooms) {
@@ -73,31 +71,31 @@ public class AvitoService {
     }
 
     public List<House> sortByPriceAsc() throws SQLException {
-        houses = getListOfHouses();
+        List<House> houses = getListOfHouses();
         houses.sort((o1, o2) -> o1.getPrice() - o2.getPrice());
         return houses;
     }
 
     public List<House> sortByPriceDesc() throws SQLException {
-        houses = getListOfHouses();
+        List<House> houses = getListOfHouses();
         houses.sort((o1, o2) -> -(o1.getPrice() - o2.getPrice()));
         return houses;
     }
 
     public List<House> sortByDistrict() throws SQLException {
-        houses = getListOfHouses();
+        List<House> houses = getListOfHouses();
         houses.sort((o1, o2) -> o1.getDistrict().compareTo(o2.getDistrict()));
         return houses;
     }
 
     public List<House> sortByUnderground() throws SQLException {
-        houses = getListOfHouses();
+        List<House> houses = getListOfHouses();
         houses.sort((o1, o2) -> o1.getUnderground().compareTo(o2.getUnderground()));
         return houses;
     }
 
     public List<House> sortByRooms() throws SQLException {
-        houses = getListOfHouses();
+        List<House> houses = getListOfHouses();
         houses.sort((o1, o2) -> o1.getRoom() - o2.getRoom());
         return houses;
     }
