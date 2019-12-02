@@ -13,5 +13,12 @@ public class House {
     private int room;
     private String underground;
     private String district;
+
+    public House(int price, int room, String underground, String district) {
+        this.price = price;
+        this.room = room;
+        this.underground = underground;
+        this.district = district;
+    }
 }
 
